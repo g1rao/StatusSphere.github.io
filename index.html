@@ -8,12 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <!-- 
-        Chosen Palette: Soft Mint & Cream
-        Application Structure Plan: A single-page, vertically scrolling landing page with thematic sections (Hero, Features, How-to, Security, Footer). This structure guides the user logically from introduction to trust-building, making it more engaging than a static document. Interactions like smooth scrolling and an accordion for the FAQ improve usability by reducing clutter and guiding focus.
-        Visualization & Content Choices: Hero: App mockup (HTML/CSS) for visual context. Features: Interactive grid of cards (HTML/CSS) for scannability. How-to Guide: Visual stepper component (HTML/CSS) to simplify instructions. Security: Accordion (JS toggle) for the complex permission question, keeping the main view clean while providing crucial details on demand. All icons are Unicode/CSS. This approach prioritizes clarity and engagement for a non-technical audience.
-        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
-    -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -30,6 +24,24 @@
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
         }
+        /* Floating Download Button */
+        .floating-download {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 9999px;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+        .floating-download:hover {
+            background-color: #1ebe5c;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
@@ -39,9 +51,12 @@
         <div class="container mx-auto max-w-6xl px-6 py-16 text-center">
             <h1 class="text-4xl md:text-6xl font-extrabold leading-tight">StatusSphere</h1>
             <p class="mt-4 text-lg md:text-xl text-gray-200">The simple, secure way to save and share WhatsApp statuses.</p>
-            <div class="mt-8 flex justify-center gap-4">
+            <div class="mt-8 flex justify-center gap-4 flex-wrap">
                 <a href="#features" class="bg-accent hover:bg-green-500 text-white font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105">
                     Explore Features
+                </a>
+                <a href="StatusSphere.apk" download class="bg-white text-primary hover:bg-gray-200 font-bold py-3 px-8 rounded-full transition-transform transform hover:scale-105 shadow-lg">
+                    ⬇ Download StatusSphere
                 </a>
             </div>
         </div>
@@ -54,7 +69,6 @@
             <div class="flex justify-center">
                 <div class="w-full max-w-sm bg-white p-2 rounded-3xl shadow-2xl border-4 border-gray-200">
                     <div class="aspect-w-9 aspect-h-16 w-full overflow-hidden rounded-2xl bg-gray-100">
-                        <!-- Mock App Screen -->
                         <div class="p-4">
                             <div class="flex items-center justify-between mb-4">
                                 <h2 class="text-lg font-bold text-primary">StatusSphere</h2>
@@ -81,37 +95,31 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center text-primary">Everything You Need</h2>
             <p class="text-center mt-2 text-gray-600">Powerful features designed for a seamless experience.</p>
             <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Feature Card -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div class="text-3xl">✨</div>
                     <h3 class="text-xl font-bold mt-4">WhatsApp-Inspired UI</h3>
                     <p class="mt-2 text-gray-600">A clean and modern user interface that feels familiar and is easy to navigate.</p>
                 </div>
-                <!-- Feature Card -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div class="text-3xl">🔄</div>
                     <h3 class="text-xl font-bold mt-4">Automatic Refresh</h3>
                     <p class="mt-2 text-gray-600">The app automatically finds new statuses every time you open it. You can also pull down to refresh.</p>
                 </div>
-                <!-- Feature Card -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div class="text-3xl">🟢</div>
                     <h3 class="text-xl font-bold mt-4">Highlight New Statuses</h3>
                     <p class="mt-2 text-gray-600">New, unsaved statuses are highlighted with a bright green ring. Saved statuses are dimmed for clarity.</p>
                 </div>
-                <!-- Feature Card -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div class="text-3xl">🚀</div>
                     <h3 class="text-xl font-bold mt-4">One-Tap Actions</h3>
                     <p class="mt-2 text-gray-600">Quickly save or share any status with a single tap from a simple options menu.</p>
                 </div>
-                <!-- Feature Card -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div class="text-3xl">📋</div>
                     <h3 class="text-xl font-bold mt-4">Bulk Selection</h3>
                     <p class="mt-2 text-gray-600">Long-press any status to select multiple items and save or share them all at once.</p>
                 </div>
-                <!-- Feature Card -->
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
                     <div class="text-3xl">📱</div>
                     <h3 class="text-xl font-bold mt-4">In-App Media Viewer</h3>
@@ -125,19 +133,16 @@
             <h2 class="text-3xl md:text-4xl font-bold text-center text-primary">How It Works</h2>
             <p class="text-center mt-2 text-gray-600">Get started in just a few simple steps.</p>
             <div class="mt-12 flex flex-col md:flex-row justify-center items-start gap-8">
-                <!-- Step -->
                 <div class="text-center flex-1">
                     <div class="w-16 h-16 bg-accent text-white text-2xl font-bold rounded-full flex items-center justify-center mx-auto">1</div>
                     <h3 class="text-xl font-bold mt-4">Grant Permission</h3>
                     <p class="mt-2 text-gray-600">The first time you open the app, allow "All Files Access" so it can find statuses automatically.</p>
                 </div>
-                <!-- Step -->
                 <div class="text-center flex-1">
                     <div class="w-16 h-16 bg-accent text-white text-2xl font-bold rounded-full flex items-center justify-center mx-auto">2</div>
                     <h3 class="text-xl font-bold mt-4">View in WhatsApp</h3>
                     <p class="mt-2 text-gray-600">Watch a few statuses in the official WhatsApp app. This makes them available to StatusSphere.</p>
                 </div>
-                <!-- Step -->
                 <div class="text-center flex-1">
                     <div class="w-16 h-16 bg-accent text-white text-2xl font-bold rounded-full flex items-center justify-center mx-auto">3</div>
                     <h3 class="text-xl font-bold mt-4">Save & Share</h3>
@@ -174,7 +179,7 @@
                         <span id="accordion-icon" class="transform transition-transform duration-300">▼</span>
                     </button>
                     <div id="accordion-content" class="accordion-content px-4">
-                        <p class="pb-4 text-gray-600">Modern Android versions have strict security rules. The WhatsApp status folder is hidden in a protected system area. The "All Files Access" permission is the **only way** for the app to automatically find these folders without forcing you to manually select them. The app uses this permission **only** to read the `.Statuses` folders and for nothing else.</p>
+                        <p class="pb-4 text-gray-600">Modern Android versions have strict security rules. The WhatsApp status folder is hidden in a protected system area. The "All Files Access" permission is the <b>only way</b> for the app to automatically find these folders without forcing you to manually select them. The app uses this permission <b>only</b> to read the `.Statuses` folders and for nothing else.</p>
                     </div>
                 </div>
             </div>
@@ -182,10 +187,14 @@
 
     </main>
 
+    <!-- Footer -->
     <footer class="bg-gray-800 text-white text-center py-6">
         <p>&copy; 2025 StatusSphere. All rights reserved.</p>
     </footer>
-    
+
+    <!-- Floating Download Button -->
+    <a href="StatusSphere.apk" download class="floating-download">⬇ Download StatusSphere</a>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const accordionButton = document.getElementById('accordion-button');
